@@ -1,0 +1,1006 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Piecewise Cubic Hermite Interpolating Polynomial (PCHIP) - MATLAB pchip - MathWorks Deutschland</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="/includes_content/responsive/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/includes_content/responsive/css/site6.css?20150306" rel="stylesheet" type="text/css">
+<link href="/includes_content/responsive/css/site6_lg.css?20150306" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link href="/includes_content/responsive/css/site6_md.css?20150306" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link href="/includes_content/responsive/css/site6_sm+xs.css?20150306" rel="stylesheet" media="screen and (max-width: 991px)">
+<link href="/includes_content/responsive/css/site6_sm.css?20150306" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link href="/includes_content/responsive/css/site6_xs.css?20150306" rel="stylesheet" media="screen and (max-width: 767px)">
+<!--[if IE 8]>
+<link href="/includes_content/responsive/css/site6_ie8.css?20150306" rel="stylesheet" type="text/css">
+<script src="/includes_content/responsive/scripts/bootstrap/html5shiv-printshiv.js"></script>
+<script src="/includes_content/responsive/scripts/bootstrap/respond.min.js"></script>
+<script src="/includes_content/responsive/scripts/bootstrap/placeholders.min.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<link href="/includes_content/responsive/css/site6_ie9.css?20150306" rel="stylesheet" type="text/css">
+<script src="/includes_content/responsive/scripts/bootstrap/placeholders.min.js"></script>
+<![endif]-->
+<link href="/includes_content/responsive/css/site6_offcanvas.css?20150306" rel="stylesheet" type="text/css">
+<!--[if IE 8]>
+<link href="/includes_content/responsive/css/site6_offcanvas_ie8.css?20150306" rel="stylesheet" type="text/css">
+<script src="/includes_content/responsive/scripts/bootstrap/respond.min.js"></script>
+<![endif]-->
+<script src="/includes_content/responsive/scripts/jquery/jquery-latest.js"></script>
+<script src="/includes_content/responsive/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script src="/includes_content/responsive/scripts/bootstrap/bootstrap.min.js"></script>
+<script src="/includes_content/responsive/scripts/global.js"></script>
+<script src="https://fonts.mathworks.com/xvy5baa.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+<!-- BEGIN Adobe DTM -->
+<script src="/scripts/dtm/d0cc0600946eb3957f703b9fe43c3590597a8c2c/satelliteLib-e8d23c2e444abadc572df06537e2def59c01db09.js"></script>
+<!-- END Adobe DTM -->
+<link href="/includes_content/responsive/css/localized/site6_de.css" rel="stylesheet" type="text/css">
+<link href="/includes_content/releases/R2016a/css/doc_center.css?20150306" rel="stylesheet" type="text/css">
+<!--[if IE 8]>
+<link href="/includes_content/releases/R2016a/css/doc_center_ie8.css?20150306" rel="stylesheet" type="text/css">
+<![endif]-->
+<!--[if IE 9]>
+<link href="/includes_content/releases/R2016a/css/doc_center_ie9.css?20150306" rel="stylesheet" type="text/css">
+<![endif]-->
+<link href="/includes_content/releases/R2016a/css/doc_center_print.css?20150306" rel="stylesheet" type="text/css" media="print">
+<script src="/help/includes/web/scripts/matlab_dialog.js?20150306"></script>
+<link rel="stylesheet" href="docstyle.css" type="text/css">
+<meta name="chunktype" content="refpage">
+<meta name="refentity" itemprop="refentity" content="function:pchip">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="toctype" itemprop="pagetype" content="fcn">
+<meta name="infotype" itemprop="infotype" content="ref/function" />
+<meta name="description" itemprop="description" content="This MATLAB function returns vector yi containing elements corresponding to the elements of xi and determined by piecewise cubic interpolation within vectors x and&nbsp;y." />
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/l10n.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/docscripts.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/f1help.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/mw.toc_2.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/mw.imagescaling.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/mw.imageanimation.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/mw.breadcrumb.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/jquery.highlight.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/scripts/nanoscroller.min.js?201602222155"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/web/scripts/doc_omniture.js?201602222155"></script>
+<!-- Additions/overrides from the doc side -->
+<script type="text/javascript" src="/help/search/R2016a/docsearch.js?20160414"></script>
+<script type="text/javascript" src="/includes_content/nextgen/scripts/jquery/jquery.toggleval.js?20160414"></script>
+<script type="text/javascript" src="/help/releases/R2016a/includes/shared/equationrenderer/release/MathRenderer.js"></script>
+<script type="text/javascript" src="/includes_content/nextgen/scripts/jquery/jquery.cookie.js"></script>
+<script type="text/javascript">
+(function() {
+// Check if cookies are enabled
+function cookiesEnabled() {
+return $.cookie('check', 'valid', { expires: 1 }) && $.cookie('check') == 'valid';
+}
+// Set the language of the domain and redirect to the domain
+function setDomainLanguage(language) {
+if($.cookie("lang") != null) {
+$.removeCookie("lang");
+}
+$.cookie("lang", 'lang=' + language, {path: '/', expires: 365, domain: 'ch.mathworks.com'});
+}
+// do not display the domain selector if querystring is not present
+// or if query string has nocookie value
+// or if cookies are disabled
+var displayDomainSelector = true;
+function detectDomain() {
+var queries = {};
+$.each(document.location.search.substr(1).split('&'), function(c,q){
+if(q != undefined && q != "") {
+var i = q.split('=');
+if(i[1] != undefined) {
+queries[i[0].toString()] = i[1].toString();
+}
+}
+});
+var requested_domain = (queries['requestedDomain'] != undefined) ? queries['requestedDomain'] : "";
+var nocookie = (queries['nocookie'] != undefined) ? queries['nocookie'] : "";
+var client = (queries['client'] != undefined) ? queries['client'] : "";
+if(requested_domain == "" || nocookie == "true" || !cookiesEnabled() || client == "addons" || window.overrideDomainSelector) {
+displayDomainSelector = false;
+}
+}
+detectDomain();
+function extractDomain(url) {
+var domain;
+//find & remove protocol (http, ftp, etc.) and get domain
+if (url.indexOf("://") > -1) {
+domain = url.split('/')[2];
+} else {
+domain = url.split('/')[0];
+}
+//find & remove port number
+domain = domain.split(':')[0];
+return domain;
+}
+function getDomainContent(returnContent) {
+// Get the location information from the marketing site
+$.ajax({
+url : "/includes_content/domainSelect/location.html",
+type : "get",
+async: false,
+success : function(data) {
+$("#location_content").html(data);
+var button_link = $("#button_link").text();
+var current_location = $("#current_location").text();
+var location_key = $("#location_key").text();
+//Set the location in the text and button
+$(".text_location").text(current_location);
+$("#domain_select_button").text("Select " + current_location);
+// if the current location is different from the browser location, update the button functionality
+var browser_domain = extractDomain(window.location.href);
+if(button_link.indexOf(browser_domain) == -1) {
+// Get the current page link from the links within the selector
+new_button_link = $("." + location_key).attr("href");
+$("#domain_select_button").attr("href",new_button_link);
+$("#domain_select_button").removeAttr("data-dismiss");
+}
+}
+});
+if(returnContent) {
+return $('#country-unselected').html();
+}
+}
+$(document).ready(function () {
+//setLocation();
+// determine if links need to be rewritten
+if ( $( "#country-unselected li a" ).length ) {
+$("#country-unselected li a").each(function() {
+var link_url = $(this).attr("href").replace(/%26requestedDomain(%3D[^%26|&]*)?|requestedDomain(%3D[^%26|&]*)?(%26)?/, "");
+$(this).attr("href", link_url);
+});
+}
+if ( $( "li.headernav_login > a" ).length ) {
+var login_url = $("li.headernav_login > a").attr("href").replace(/%26requestedDomain(%3D[^%26|&]*)?|requestedDomain(%3D[^%26|&]*)?(%26)?/, "");
+$("li.headernav_login > a").attr("href", login_url);
+}
+if ( $( "li.mwa-nav_logout > a" ).length ) {
+var login_url = $("li.mwa-nav_logout > a").attr("href").replace(/%26requestedDomain(%3D[^%26|&]*)?|requestedDomain(%3D[^%26|&]*)?(%26)?/, "");
+$("li.mwa-nav_logout > a").attr("href", login_url);
+}
+if ( $( ".mwa-nav li a" ).length ) {
+$(".mwa-nav li a").each(function() {
+var link_url = $(this).attr("href").replace(/%26requestedDomain(%3D[^%26|&]*)?|requestedDomain(%3D[^%26|&]*)?(%26)?/, "");
+$(this).attr("href", link_url);
+});
+}
+$('body').on('click','.footernav_country a',function(){
+getDomainContent(false);
+});
+// set the click function for Switzerland/French link
+$('body').on('click','#swiss_french',function(){
+setDomainLanguage('fr');
+});
+// set the click function for the Switzerland/German link
+$('body').on('click','#swiss_german',function(){
+setDomainLanguage('de');
+});
+});
+// onload functionality for the selector
+$(document).ready(function () {
+if(displayDomainSelector) {
+getDomainContent(false);
+$('#country-unselected').modal('show');
+}
+});
+})(jQuery);
+</script>
+</head>
+  
+<body id="responsive_offcanvas">
+
+  <!-- Mobile TopNav: Start -->
+<div class="header visible-xs visible-sm" id="header_mobile">
+<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle topnav_toggle" data-toggle="collapse" data-target="#topnav_collapse">
+<span class="sr-only">Toggle Main Navigation</span>
+<span class="icon-menu"></span>
+</button>
+<a href="http://de.mathworks.com/index.html?s_tid=gn_logo" class="svg_link navbar-brand">
+<img src="/images/responsive/global/pic-header-mathworks-logo.svg" class="mw_logo" alt="MathWorks">
+</a>
+</div>
+</div>
+</div>
+<div class="row visible-xs visible-sm">
+<div class="col-xs-12">
+<div class="navbar-collapse collapse" id="topnav_collapse">
+<ul class="nav navbar-nav" id="topnav">
+<li class="headernav_login">
+<a href="https://de.mathworks.com/login?uri=http://de.mathworks.com/help/matlab/ref/pchip.html" class="mwa-nav_login">Anmelden</a>
+</li>
+<li class="topnav_products "><a href="http://de.mathworks.com/products/?s_tid=gn_ps" >Produkte</a></li>
+<li class="topnav_solutions "><a href="http://de.mathworks.com/solutions/?s_tid=gn_sol">L&ouml;sungen</a></li>
+<li class="topnav_academia "><a href="http://de.mathworks.com/academia/?s_tid=gn_acad">Forschung und Lehre</a></li>
+<li class="topnav_support "><a href="http://de.mathworks.com/support/?s_tid=gn_supp">Support</a></li>
+<li class="topnav_community "><a href="http://de.mathworks.com/matlabcentral/?s_tid=gn_mlc">Community</a></li>
+<li class="topnav_events "><a href="http://de.mathworks.com/company/events/?s_tid=gn_ev">Veranstaltungen</a></li>
+<li class="topnav_company "><a href="http://de.mathworks.com/company/?s_tid=gn_co">Unternehmen</a></li>
+<li class="headernav_contact"><a href="http://de.mathworks.com/company/aboutus/contact_us/?s_tid=gn_cntus">Kontakt</a></li>
+<li class="headernav_store"><a href="http://de.mathworks.com/store?s_cid=store_top_nav&s_tid=gn_store">Kaufinfos</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<!-- Mobile TopNav: End -->
+<!-- Desktop TopNav: Start -->
+<div class="header hidden-xs hidden-sm" id="header_desktop">
+<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+<div class="collapse navbar-collapse" id="headernav_collapse">
+<ul class="nav navbar-nav navbar-right" id="headernav">
+<li class="headernav_contact"><a href="http://de.mathworks.com/company/aboutus/contact_us/?s_tid=gn_cntus">Kontakt</a></li>
+<li class="headernav_store"><a href="http://de.mathworks.com/store?s_cid=store_top_nav&s_tid=gn_store">Kaufinfos</a></li>
+<li class="headernav_login">
+<a href="https://de.mathworks.com/login?uri=http://de.mathworks.com/help/matlab/ref/pchip.html" class="mwa-nav_login">Anmelden</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<div class="navbar-header">
+<div class="logo_container hidden-xs hidden-sm">
+<a href="http://de.mathworks.com/index.html?s_tid=gn_logo" class="svg_link pull-left">
+<img src="/images/responsive/global/pic-header-mathworks-logo.svg" class="mw_logo" alt="MathWorks">
+</a>
+</div>
+<div class="navbar-collapse collapse hidden-xs hidden-sm">
+<ul class="nav navbar-nav" id="topnav">
+<li class="topnav_products "><a href="http://de.mathworks.com/products/?s_tid=gn_ps" >Produkte</a></li>
+<li class="topnav_solutions "><a href="http://de.mathworks.com/solutions/?s_tid=gn_sol">L&ouml;sungen</a></li>
+<li class="topnav_academia "><a href="http://de.mathworks.com/academia/?s_tid=gn_acad">Forschung und Lehre</a></li>
+<li class="topnav_support "><a href="http://de.mathworks.com/support/?s_tid=gn_supp">Support</a></li>
+<li class="topnav_community "><a href="http://de.mathworks.com/matlabcentral/?s_tid=gn_mlc">Community</a></li>
+<li class="topnav_events "><a href="http://de.mathworks.com/company/events/?s_tid=gn_ev">Veranstaltungen</a></li>
+<li class="topnav_company "><a href="http://de.mathworks.com/company/?s_tid=gn_co">Unternehmen</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<!-- Desktop TopNav: End -->
+<!-- Conjoined Header: Start -->
+<div class="sticky_header_container includes_subnav">
+<!-- Section Header: Start -->
+<div class="section_header level_3">
+<div class="container-fluid">
+<div class="row" id="mobile_search_row">
+<div class="col-xs-12 col-sm-6 col-sm-push-6 col-md-5 col-md-push-7" id="mobile_search">
+<div class="search_nested_content_container">
+<div id="search_scope_doc" class="collapse in">
+<form id="docsearch_form" name="docsearch_form" method="get" data-release="R2016a" data-language="en" action="../../search.html">
+<div class="input-group tokenized_search_field">
+<label class="sr-only">Search MATLAB Documentation</label>
+<input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search R2016a Documentation" id="docsearch">
+<div class="input-group-btn">
+<button type="button" class="btn btn_search_adjacent dropdown-toggle" data-toggle="dropdown" tabindex="-1"><span class="caret"></span><span class="search_scope_label">Documentation</span></button>
+<ul class="dropdown-menu list-unstyled dropdown-menu-right" role="menu">
+<!-- <li data-toggle="collapse" data-target="#search_scope_doc"><a href="#">Documentation</a></li> -->
+<li data-toggle="collapse" data-target="#search_scope_support" class="doc_search_scope_trigger"><a href="#">Support</a></li>
+<li data-toggle="collapse" data-target="#search_scope_site" class="doc_search_scope_trigger"><a href="#">MathWorks</a></li>
+</ul>
+<script>
+$(".doc_search_scope_trigger").click(function() {
+$("#search_scope_doc").removeClass("in");
+$("#search").val($("#docsearch").val());
+$("#query").val($("#docsearch").val());
+});
+</script>
+<button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button>
+</div>
+</div>
+</form>
+</div>
+<div id="search_scope_support" class="collapse">
+<form id="support_search" action="/support/search_results.html" method="get" accept-charset="utf-8">
+<div class="input-group">
+<label class="sr-only">Search All Support Resources</label>
+<input id="suggestion" type="hidden" name="suggestion" value="">
+<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+<input id="search" class="form-control conjoined_search" type="text" name="q" placeholder="Search All Support Resources" autocomplete="off">
+<div class="input-group-btn">
+<button type="button" class="btn btn_search_adjacent dropdown-toggle" data-toggle="dropdown" tabindex="-1"><span class="caret"></span><span class="search_scope_label">Support</span></button>
+<ul class="dropdown-menu list-unstyled dropdown-menu-right" role="menu">
+<li data-toggle="collapse" data-target="#search_scope_doc" class="support_search_scope_trigger"><a href="#">Documentation</a></li>
+<!--<li data-toggle="collapse" data-target="#search_scope_support"><a href="#">Support</a></li>-->
+<li data-toggle="collapse" data-target="#search_scope_site" class="support_search_scope_trigger"><a href="#">MathWorks</a></li>
+</ul>
+<script>
+$(".support_search_scope_trigger").click(function() {
+$("#search_scope_support").removeClass("in");
+$("#docsearch").val($("#search").val());
+$("#query").val($("#search").val());
+});
+</script>
+<button type="submit" name="submitsearch" id="support_submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button>
+</div>
+</div>
+</form>
+</div>
+<div id="search_scope_site" class="collapse">
+<form name="search" id="site_search" class="site_search" action="/search/site_search.html" method="get">
+<div class="input-group">
+<label class="sr-only">MathWorks-Suche</label>
+<input type="hidden" name="c[]" value="entire_site">
+<input type="text" name="q" id="query" class="form-control conjoined_search" placeholder="MathWorks-Suche" autocomplete="off" \="">
+<div class="input-group-btn">
+<button type="button" class="btn btn_search_adjacent dropdown-toggle" data-toggle="dropdown" tabindex="-1"><span class="caret"></span><span class="search_scope_label">MathWorks</span></button>
+<ul class="dropdown-menu list-unstyled dropdown-menu-right" role="menu">
+<li data-toggle="collapse" data-target="#search_scope_doc" class="site_search_scope_trigger"><a href="#">Documentation</a></li>
+<li data-toggle="collapse" data-target="#search_scope_support" class="site_search_scope_trigger"><a href="#">Support</a></li>
+<!--<li data-toggle="collapse" data-target="#search_scope_site" class="support_search_scope_trigger"><a href="#">MathWorks</a></li>-->
+</ul>
+<script>
+$(".site_search_scope_trigger").click(function() {
+$("#search_scope_site").removeClass("in");
+$("#search").val($("#query").val());
+$("#docsearch").val($("#query").val());
+});
+</script>
+<button type="submit" id="searchbutton" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<button class="btn icon-remove btn_search pull-right icon_32 visible-xs" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button>
+</div>
+<div class="col-sm-6 col-sm-pull-6 col-md-7 col-md-pull-5" id="section_header_title">
+<div class="section_header_content">
+<div class="section_header_title add_cursor_pointer">
+<h1>Documentation</h1>
+</div>
+</div>
+</div>
+<div class="visible-xs" id="search_actuator">
+<button class="btn icon-search btn_search pull-right icon_16" data-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button>
+</div>
+</div>
+<script>
+$(".section_header_title").click(function(){
+$(window.location).attr('href', '/help');
+});
+</script>
+<!-- Section Header: End -->
+<!-- Mobile Local Nav: Start -->
+<!-- Mobile Local Nav: End -->
+</div>
+</div>
+<!-- Horo Nav: Start -->
+<div class="horizontal_nav">
+<div class="horizontal_nav_container">
+<div class="offcanvas_actuator" data-toggle="offcanvas" data-target="#sidebar" id="nav_toggle">
+<button type="button" class="btn">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-menu"></span>
+</button>
+<span class="offcanvas_actuator_label" id="translation_icon-menu"></span>
+<span class="offcanvas_actuator_close"></span>
+</div>
+<div class="offcanvas_horizontal_nav">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12 hidden-xs hidden-sm">
+<div class="cta_box">
+<ul class="list-inline">
+<li class="cta_item cta_item_general"><a href="/programs/bounce/doc_tryit.html" class="icon-download">Trials</a></li>
+<li class="cta_item cta_item_general"><a href="/support/web_downloads_bounce.html?s_cid=1008_degr_docdn_270055" class="icon-download">Product Updates</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Horo Nav: End -->
+</div>
+<!-- Conjoined Header: End -->
+
+  <div class="row-offcanvas row-offcanvas-left">
+  
+    <div class="sidebar-offcanvas" id="sidebar" role="navigation">
+      <nav class="offcanvas_nav" role="navigation">
+          <ul xmlns:atict="http://www.arbortext.com/namespace/atict" class="nav_breadcrumb">
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../index.html" itemprop="url"><span itemprop="title">All Products</span></a></li>
+</ul>
+
+<ul xmlns:atict="http://www.arbortext.com/namespace/atict" class="nav_disambiguation">
+<li class="product"><a href="../index.html">MATLAB</a>
+<div class="dropdown">
+<span class="icon-arrow-down icon_16" id="dropdownMenu1" data-toggle="dropdown"></span>
+<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+<li role="presentation"><a role="menuitem" tabindex="-1" href="../examples.html?s_cid=doc_flyout">Examples</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="../functionlist.html?s_cid=doc_flyout">Functions</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="../release-notes.html?s_cid=doc_flyout">Release Notes</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="../../pdf_doc/matlab/index.html?s_cid=doc_flyout">PDF Documentation</a></li>
+</ul>
+</div>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html" itemprop="url"><span itemprop="title">Mathematics</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interpolation-1.html" itemprop="url"><span itemprop="title">Interpolation</span></a></li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../1-d-interpolation.html" itemprop="url"><span itemprop="title">1-D Interpolation</span></a></li>
+</ul>
+<ul xmlns:atict="http://www.arbortext.com/namespace/atict" class="nav_disambiguation">
+<li><a href="../index.html">MATLAB</a>
+</li>
+<li><a href="../functionlist.html" itemprop="url">Functions</a></li>
+</ul>
+<ul xmlns:atict="http://www.arbortext.com/namespace/atict" class="nav_scrollspy nav">
+<li class="nav_scrollspy_function"><a href="#responsive_offcanvas">pchip</a></li>
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li>
+<li><a href="#syntax" class="intrnllnk">Syntax</a></li>
+<li><a href="#zmw57dd0e593113" class="intrnllnk">Description</a></li>
+<li><a href="#examples" class="intrnllnk">Examples</a><ul>
+<li><a href="#bt47rjh" class="intrnllnk">Data Interpolation Using spline and pchip</a></li>
+</ul>
+</li><li><a href="#moreabout" class="intrnllnk">More About</a><ul>
+<li><a href="#f93-998560" class="intrnllnk">Tips</a></li>
+</ul>
+</li><li><a href="#zmw57dd0e593381" class="intrnllnk">References</a></li>
+<li><a href="#zmw57dd0e593395" class="intrnllnk">See Also</a></li>
+</ul>
+
+      </nav>
+      <script src="/includes_content/responsive/scripts/offcanvas.js?20150311"></script>
+    </div>
+
+    <!-- MOBILE CTA - Begin -->
+    <!-- MOBILE CTA - End -->
+
+
+    <div class="content_container" id="content_container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+              
+
+
+
+
+
+
+           
+     
+    
+           
+<div id="TranslationIsOn">
+  <div class="alert alert-info" > <span class="alert_icon icon-alert-info-reverse"></span>
+    <h3>This is machine translation</h3>
+    <p><div translate="no"> 
+    	  Translated by <a href="http://aka.ms/MicrosoftTranslatorAttribution" target="_blank"> <img src="/help/includes/web/images/msft_logo.png" alt="Microsoft" style="height:auto; width:100px; margin-top:-3px; display:inline-block;"> </a>
+    	  <span id="counter" style="color:red"> </span>
+    	</div>
+    	 Mouse over text to see original. Click the button below to return to the English verison of the page.</p> 
+    <button type="button" id="pageBack" translate="no" onclick="history.go(0);" class="btn btn-sm btn_secondary pull-right"> Back to English </button>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<!-- Translation Modal: START -->
+<div class="modal fade" id="translation_modal" tabindex="-1" role="dialog" aria-labelledby="translation_modal_label" translate="no">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="translation_modal_label">Translate This Page</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <select name="to" id="target-language" class="form-control"> 
+            <option value="languages" disabled selected>Select Language</option>
+            <option value="bg">Bulgarian</option>
+            <option value="ca">Catalan</option>
+            <option value="zh-CHS">Chinese Simplified</option>
+            <option value="zh-CHT">Chinese Traditional</option>
+            <option value="cs">Czech</option>
+            <option value="da">Danish</option>
+            <option value="nl">Dutch</option>
+            <option value="en">English</option>
+            <option value="et">Estonian</option>
+            <option value="fi">Finnish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="ht">Haitian Creole</option>
+            <option value="hi">Hindi</option>
+            <option value="mww">Hmong Daw</option>
+            <option value="hu">Hungarian</option>
+            <option value="id">Indonesian</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="lv">Latvian</option>
+            <option value="lt">Lithuanian</option>
+            <option value="ms">Malay</option>
+            <option value="mt">Maltese</option>
+            <option value="no">Norwegian</option>
+            <option value="pl">Polish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ro">Romanian</option>
+            <option value="ru">Russian</option>
+            <option value="sk">Slovak</option>
+            <option value="sl">Slovenian</option>
+            <option value="es">Spanish</option>
+            <option value="sv">Swedish</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="uk">Ukrainian</option>
+            <option value="vi">Vietnamese</option>
+            <option value="cy">Welsh</option>
+          </select>
+        </div>
+        <small class="add_font_color_general">
+        <p class="add_margin_5"><strong>MathWorks Machine Translation</strong></p>
+        <p>The automated translation of this page is provided by a general purpose third party translator tool.</p>
+        <p>MathWorks does not warrant, and disclaims all liability for, the accuracy, suitability, or fitness for purpose of the translation.</p>
+        </small> </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="translateBtn" onclick="thisPageTranslate()">Translate</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  html body { /*overflow-y:visible;*/ }
+  #TranslationIsOn { display:none; }
+</style>
+
+<script>
+	    
+  function thisPageTranslate() {
+  	
+    var targetLanguage = $("#target-language option:selected").val();
+    
+    $('#translation_modal').modal('hide');
+    $(".icon-chat").hide();
+   
+    var script = document.createElement('script')
+		script.type = "text/javascript";
+		script.src = "http://www.microsoftTranslator.com/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&ctf=False&ui=true&settings=Manual&from=en";
+		
+    script.onload = function() {
+      	Microsoft.Translator.Widget.Translate('en', targetLanguage, onProgress, null, onComplete);
+      }
+      
+    $("head")[0].appendChild(script);
+    		
+    if (targetLanguage !== "en") {
+    	 $("#TranslationIsOn").toggle();
+    }
+    else {
+    	 $("#TranslationIsOn").toggle();
+    }
+  }
+  
+  function onProgress(value) {
+       document.getElementById('counter').innerHTML = Math.round(value) + "%";
+  }
+
+  function onComplete() {
+       $("#counter").hide();
+  }
+  
+$('#target-language').on('change', function() {
+    $('#translateBtn').prop('disabled', false);
+});
+
+  function setTargetLangBasedLocale() {
+   	var locale = (navigator.language || navigator.userLanguage).toLowerCase(); 
+   	var localeLang = locale.split('-',1);
+    var num_langOptions = document.getElementById("target-language").length; 
+       
+    //default lang is set based on navigator's locale. If locale is English or no match found, set as "Select Language". 
+    
+    if (localeLang != "en") {
+    		var i = 0;
+  	    while (i<num_langOptions) {
+  		      var lang = document.getElementById("target-language").options[i].value; 
+  			    if ((lang == localeLang && localeLang != "zh") ||(lang == "zh-CHS" && locale == "zh-cn") || (lang == "zh-CHT" && locale == "zh-tw")) {
+  				 	    document.getElementById("target-language").options[i].selected = true;
+  				 	    break;
+  			    }
+  			    i++;
+  	    }
+  	  }
+  	  
+  	if ($("#target-language option:selected").val() == "languages")
+  		$('#translateBtn').prop('disabled', true);
+
+  } // setTargetLangBasedLocale
+
+  $(document).ready(function() {
+    $(".cta_box .list-inline").append('<li class="cta_item cta_item_general"><a href="#" class="icon-chat" data-toggle="modal" data-target="#translation_modal">Translate This Page</a></li>');
+    setTargetLangBasedLocale();
+  });
+</script>
+<style>
+  #WidgetFloaterPanels { display:none !important; }
+</style>
+<!-- Translation Modal: END --> 
+             
+<section id="doc_center_content" lang="en"><div id="pgtype-ref-function"><div class="function_ref">
+  
+
+<span id="f93-998490" class="anchor_target"></span><a class="indexterm" name="zmw57dd0e593092"></a><a class="indexterm" name="zmw57dd0e593096"></a><div itemprop="content"><h1 class="r2016a" itemprop="title">pchip</h1><!-- SYNCHTO: _funcalpha.html --><div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">Piecewise Cubic Hermite Interpolating Polynomial (PCHIP)</p><div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div></div></div></div>
+<span id="f93-998494" class="anchor_target"></span><div class="ref_sect"><h2 id="syntax">Syntax</h2><div class="syntax_signature"><p class="synopsis"><code>yi = pchip(x,y,xi)<br>pp = pchip(x,y)<br></code></p></div></div><div class="clear"></div><div itemprop="content" class="ref_sect"><span id="f93-998497" class="anchor_target"></span><h2 id="zmw57dd0e593113">Description</h2><p><span itemprop="syntax"><code><span id="f93-998498" class="anchor_target"></span>yi = pchip(x,y,xi)</code></span> returns
+vector <code>yi</code> containing elements corresponding to
+the elements of <code>xi</code> and determined by piecewise
+cubic interpolation within vectors <code>x</code> and&nbsp;<code>y</code>.
+The vector <code>x</code> specifies the points at which the
+data <code>y</code> is given, so <code>x</code> and <code>y</code> must
+have the same length. If <code>y</code> is a matrix or array,
+then the values in the last dimension, <code>y(:,...,:,j)</code>,
+are taken as the values to match with <code>x</code>. In that
+case, the last dimension of <code>y</code> must be the same
+length as <code>x</code>. If <code>y</code> has <code>n</code> dimensions,
+then output <code>yi</code> is of size <code>[size(y,1) size(y,2)
+... size(y,n-1) length(xi)]</code>. For example, if <code>y</code> is
+a matrix, then <code>yi</code> is of size <code>[size(y,1)
+length(xi)]</code>.</p><p><span itemprop="syntax"><code><span id="f93-998500" class="anchor_target"></span>pp = pchip(x,y)</code></span> returns
+a piecewise polynomial structure for use by <code>ppval</code>. <code>x</code>&nbsp;can be a row or column vector. <code>y</code> is
+a row or column vector of the same length as <code>x</code>,
+or a matrix with <code>length(x)</code> columns. </p><p><code>pchip</code> finds values of an underlying interpolating
+function <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239804885.png' altimg-valign='-5px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>P</mi><mo stretchy='false'>(</mo><mi>x</mi><mo stretchy='false'>)</mo></mrow></math><!--MathType@End@5@5@--></span> at intermediate points, such
+that: </p><ul type="disc"><li><p>On each subinterval <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239804926.png' altimg-valign='-7px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mi>x</mi><mi>k</mi></msub><mo>&#x2264;</mo><mi>x</mi><mo>&#x2264;</mo><msub><mi>x</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math><!--MathType@End@5@5@--></span>, <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span> is the cubic Hermite
+interpolant to the given values and certain slopes at the two endpoints.</p></li><li><p><span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239804885.png' altimg-valign='-5px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>P</mi><mo stretchy='false'>(</mo><mi>x</mi><mo stretchy='false'>)</mo></mrow></math><!--MathType@End@5@5@--></span> interpolates <i>y</i>,
+i.e., <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239805097.png' altimg-valign='-9px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>P</mi><mo stretchy='false'>(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy='false'>)</mo><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math><!--MathType@End@5@5@--></span>, and the first derivative <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239805139.png' altimg-valign='-15px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mfrac><mrow><mi>d</mi><mi>P</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mrow></math><!--MathType@End@5@5@--></span> is continuous. The second derivative <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239806686.png' altimg-valign='-16px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>P</mi></mrow><mrow><mi>d</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac></mrow></math><!--MathType@End@5@5@--></span> is probably not continuous;
+there may be jumps at the <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239806767.png' altimg-valign='-9px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mi>x</mi><mi>j</mi></msub></mrow></math><!--MathType@End@5@5@--></span>.</p></li><li><p>The slopes at the <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239806767.png' altimg-valign='-9px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mi>x</mi><mi>j</mi></msub></mrow></math><!--MathType@End@5@5@--></span> are
+chosen in such a way that <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span> preserves the shape of the data and respects
+monotonicity. This means that, on intervals where the data are monotonic,
+so is <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span>; at points where the data has a local extremum,
+so does <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span>.</p></li></ul><ul><span id="zmw57dd0e593272" class="anchor_target"></span><table cellspacing="0" class="note" summary="Note" cellpadding="5" border="1"><tr width="90%"><td><p><b>Note</b>&nbsp;&nbsp;
+
+
+If <i>y</i> is a matrix, <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span> satisfies the above
+for each column of <i>y</i>.</p></td></tr></table></ul></div><div itemprop="content"></div><div itemprop="content" class="ref_sect"><div class="clear"></div><div class="examples"><h2 id="examples">Examples</h2><div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ex37837029"/><meta itemprop="exampletitle" content="Data Interpolation Using spline and pchip"/></div><div class="example_module expandableContent" id="example_1"><span id="bt47rjh" class="anchor_target"></span><h3 class="expand expanded" id="bt47rjh"><span><a style="display:block;" href="javascript:void(0);" title="Expand/Collapse"><span class="example_title">Data Interpolation Using <code>spline</code> and <code>pchip</code></span></a></span></h3><div class="collapse" style="display:block"><div class="open_example"><a href="matlab:openExample('matlab/DataInterpolationUsingSplineAndPchipExample')">Open This Example</a></div>
+
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = -3:3;
+y = [-1 -1 -1 0 1 1 1];
+t = -3:.01:3;
+p = pchip(x,y,t);
+s = spline(x,y,t);
+plot(x,y,<span style="color:#A020F0">'o'</span>,t,p,<span style="color:#A020F0">'-'</span>,t,s,<span style="color:#A020F0">'-.'</span>)
+legend(<span style="color:#A020F0">'data'</span>,<span style="color:#A020F0">'pchip'</span>,<span style="color:#A020F0">'spline'</span>,<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'SouthEast'</span>)
+</pre></div></div></div><p>
+<img src="../../examples/matlab/DataInterpolationUsingSplineAndPchipExample_01.png" alt=""></p></div></div></div></div></div><div class="clear"></div><div class="moreabout ref_sect"><h2 id="moreabout">More About</h2><div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">collapse all</a></p><div class="expandableContent" itemprop="content"><span id="f93-998560" class="anchor_target"></span><h3 class="expand expanded" id="f93-998560"><span><a style="display:block;" href="javascript:void(0);" title="Expand/Collapse"><span>Tips</span></a></span></h3><div class="collapse" style="display:block"><p><a href="spline.html"><code>spline</code></a> constructs <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239806999.png' altimg-valign='-5px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>S</mi><mo stretchy='false'>(</mo><mi>x</mi><mo stretchy='false'>)</mo></mrow></math><!--MathType@End@5@5@--></span> in almost the same way <code>pchip</code> constructs <span class="inlinemediaobject">
+<img src="eqn1239804885.png" class="baseline4" height="19" width="32" alt=""></span>. However, <code>spline</code> chooses
+the slopes at the <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239806767.png' altimg-valign='-9px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mi>x</mi><mi>j</mi></msub></mrow></math><!--MathType@End@5@5@--></span> differently, namely
+to make even <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239807054.png' altimg-valign='-5px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mi>S</mi><mo>&#x2033;</mo></msup><mo stretchy='false'>(</mo><mi>x</mi><mo stretchy='false'>)</mo></mrow></math><!--MathType@End@5@5@--></span> continuous. This has the following
+effects:</p><ul type="disc"><li><p><code>spline</code> produces a smoother result,
+i.e. <span class="inlinemediaobject"><!--MathType@Translator@5@5@MathML2(Clipboard).tdl@MathML2.0(Clipboard)@--><math altimg='eqn1239807054.png' altimg-valign='-5px' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mi>S</mi><mo>&#x2033;</mo></msup><mo stretchy='false'>(</mo><mi>x</mi><mo stretchy='false'>)</mo></mrow></math><!--MathType@End@5@5@--></span> is continuous.</p></li><li><p><code>spline</code> produces a more accurate
+result if the data consists of values of a smooth function.</p></li><li><p><code>pchip</code> has no overshoots and less
+oscillation if the data are not smooth.</p></li><li><p><code>pchip</code> is less expensive to set
+up.</p></li><li><p>The two are equally expensive to evaluate.</p></li></ul></div></div></div></div><div itemprop="content" class="ref_sect"><span id="f93-998583" class="anchor_target"></span><h2 id="zmw57dd0e593381">References</h2><div class="bibliography"><span id="f93-998584" class="anchor_target"></span><div id="BIBLIO.f93-998584" class="bibliomixed"><p>[1] Fritsch, F. N. and R. E. Carlson, "Monotone
+Piecewise Cubic Interpolation,"  <i>SIAM J. Numerical Analysis</i>,
+Vol. 17, 1980, pp.238-246. </p></div><span id="f93-998585" class="anchor_target"></span><div id="BIBLIO.f93-998585" class="bibliomixed"><p>[2] Kahaner, David, Cleve Moler, Stephen
+Nash, <i>Numerical Methods and  Software</i>, Prentice
+Hall, 1988.</p></div></div></div><div class="ref_sect"><h2 id="zmw57dd0e593395">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="interp1.html"><span itemprop="name"><code>interp1</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="ppval.html"><span itemprop="name"><code>ppval</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="spline.html"><span itemprop="name"><code>spline</code></span></a></span></p>
+</div><div class="release_introduced"><h4>Introduced before R2006a</h4></div>
+</div></div></section>
+<div class="modal fade" id="matlab-command-dialog" tabindex="-1" role="dialog" aria-labelledby="matlabCommandDialogLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">MATLAB Command</h4>
+      </div>
+      <div class="modal-body" id="dialog-body">
+        <p>You clicked a link that corresponds to this MATLAB command: </p>
+        <pre id="dialog-matlab-command"></pre>
+        <p>Run the command by entering it in the MATLAB Command Window.
+        Web browsers do not support MATLAB commands.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn_secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div><div class="feedbackblock">Was this topic helpful?
+<input type="button" value="Yes" onClick="openFeedbackWindow('http://www.mathworks.com/programs/bounce_hub_help.html?s_cid=Help_Topic_Survey&amp;surveyParams='+document.location.href+'-YES-R2016a');">
+<input type="button" value="No" onClick="openFeedbackWindow('http://www.mathworks.com/programs/bounce_hub_help.html?s_cid=Help_Topic_Survey&amp;surveyParams='+document.location.href+'-NO-R2016a');">
+</div>
+<!--Last updated: Mon Feb 22 21:55:04 EST 2016-->
+
+  
+
+
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+         
+ 
+ 
+
+
+<div id="location_content" style="display:none;"></div>
+
+
+<div class="modal fade" id="country-unselected" translate="no">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <object type="image/svg+xml" width="167px" class="mw_logo" alt="MathWorks" data="/images/responsive/global/pic-header-mathworks-logo2.svg">
+          <img alt="MathWorks" width="167px" src="/images/responsive/global/pic-header-mathworks-logo.png">
+        </object>
+      </div>
+      <div class="modal-body">
+        <div class="row add_margin_40">
+          <div class="col-xs-12">
+            <h1 class="icon-globe icon_color_secondary">Select Your Country</h1>
+            <p>Choose your country to get translated content where available and see local events and offers. Based on your location, we recommend that you select: <strong class="text_location"></strong>.</p>
+            <a href="#" id="domain_select_button" class="btn btn_secondary" data-dismiss="modal"></a>
+          </div>
+        </div>
+        <p>You can also select a location from the following list:</p>
+        <div class="row add_margin_30">
+          <div class="col-sm-4 col-md-3">
+            <h3 class="add_bottom_rule">Americas</h3>
+            <ul class="list-unstyled">
+              <li><a href="http://www.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="canada_select">Canada</a> (English)</li>
+              <li><a href="http://www.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="united_states_select">United States</a> (English)</li>
+            </ul>
+          </div>
+          <div class="col-sm-4 col-md-6">
+            <h3 class="add_bottom_rule">Europe</h3>
+            <div class="row">
+              <div class="col-xs-6 col-sm-12 col-md-6">
+                <ul class="list-unstyled add_margin_0_sm">
+                  <li><a href="http://nl.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="belgium_select">Belgium</a> (English)</li>
+                  <li><a href="http://se.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="denmark_select">Denmark</a> (English)</li>
+                  <li><a href="http://de.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="deutschland_select">Deutschland</a> (Deutsch)</li>
+                  <li><a href="http://es.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="espana_select">España</a> (Español)</li>
+                  <li><a href="http://se.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="finland_select">Finland</a> (English)</li>
+                  <li><a href="http://fr.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="france_select">France</a> (Français)</li>
+                  <li><a href="http://uk.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="ireland_select">Ireland</a> (English)</li>
+                  <li><a href="http://it.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="italia_select">Italia</a> (Italiano)</li>
+                  <li><a href="http://nl.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="luxembourg_select">Luxembourg</a> (English)</li>
+                </ul>
+              </div>
+              <div class="col-xs-6 col-sm-12 col-md-6">
+                <ul class="list-unstyled">
+                  <li><a href="http://nl.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="netherlands_select">Netherlands</a> (English)</li>
+                  <li><a href="http://se.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="norway_select">Norway</a> (English)</li>
+                  <li><a href="http://de.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="osterreich_select">Österreich</a> (Deutsch)</li>
+                  <li><a href="http://www.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="portugal_select">Portugal</a> (English)</li>
+                  <li><a href="http://se.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="sweden_select">Sweden</a> (English)</li>
+                  <li>Switzerland
+                    <ul class="list-unstyled add_indent_20">
+                      <li><a href="http://ch.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" id="swiss_german" class="switzerland_select">Deutsch</a></li>
+                      <li><a href="http://ch.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" id="swiss_french">Français</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="http://uk.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="united_kingdom_select">United Kingdom</a> (English)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3">
+            <h3 class="add_bottom_rule">Asia Pacific</h3>
+            <ul class="list-unstyled">
+              <li><a href="http://au.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="australia_select">Australia</a> (English)</li>
+              <li><a href="http://in.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="india_select">India</a> (English)</li>
+              <li><a href="http://au.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="new_zealand_select">New Zealand</a> (English)</li>
+              <li><a href="http://cn.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="china_select">中国</a> (简体中文)</li>
+              <li><a href="http://jp.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="japan_select">日本</a> (日本語)</li>
+              <li><a href="http://kr.mathworks.com/help/matlab/ref/pchip.html?action=changeCountry&s_tid=gn_loc_drop" class="korea_select">한국</a> (한국어)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-center"><strong><a href="/company/worldwide/">See all countries</a></strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE CTA - Begin -->
+    <div class="cta_container_mobile visible-sm visible-xs">
+      <div class="container-fluid">      
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="cta_box">
+<ul class="list-inline">
+<li class="cta_item cta_item_general"><a href="/programs/bounce/doc_tryit.html" class="icon-download">Trials</a></li>
+<li class="cta_item cta_item_general"><a href="/support/web_downloads_bounce.html?s_cid=1008_degr_docdn_270055" class="icon-download">Product Updates</a></li>
+</ul>
+</div> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MOBILE CTA - End -->
+
+        <!-- BODY TRAIL - Begin -->
+        <div class="body_trail_container">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="row"><div class="col-xs-12 col-sm-3"><h5><a href="../index.html?s_cid=doc_ftr">MATLAB Documentation</a></h5>
+<ul class="list-unstyled hidden-xs"><li><a href="../examples.html?s_cid=doc_ftr">Examples</a></li>
+<li><a href="../functionlist.html?s_cid=doc_ftr">Functions</a></li>
+<li><a href="../release-notes.html?s_cid=doc_ftr">Release Notes</a></li>
+<li><a href="../../pdf_doc/matlab/index.html?s_cid=doc_ftr">PDF Documentation</a></li>
+</ul>
+</div>
+<div class="col-xs-12 col-sm-3"><h5><a href="../../index.html?s_cid=doc_ftr">Other Documentation</a></h5>
+<ul class="list-unstyled hidden-xs"><li><a href="../../simulink/index.html?s_cid=doc_ftr">Simulink</a></li><li><a href="../../symbolic/index.html?s_cid=doc_ftr">Symbolic Math Toolbox</a></li><li><a href="../../stats/index.html?s_cid=doc_ftr">Statistics and Machine Learning Toolbox</a></li><li><a href="../../images/index.html?s_cid=doc_ftr">Image Processing Toolbox</a></li><li><a href="../../signal/index.html?s_cid=doc_ftr">Signal Processing Toolbox</a></li><li><a href="../../index.html?s_cid=doc_ftr">All Products</a></li></ul>
+</div>
+<div class="col-xs-12 col-sm-3"><h5><a href="/support/?s_cid=doc_ftr">Support</a></h5>
+<ul class="list-unstyled hidden-xs"><li><a href="/matlabcentral/answers/?s_cid=doc_ftr">MATLAB Answers</a></li><li><a href="/support/install-matlab.html?s_cid=doc_ftr">Installation Help</a></li><li><a href="/support/bugreports/?s_cid=doc_ftr">Bug Reports</a></li><li><a href="/products/availability/?s_cid=doc_ftr">Product Requirements</a></li><li><a href="/downloads/?s_cid=doc_ftr">Software Downloads</a></li></ul>
+</div>
+<div class="col-xs-12 col-sm-3">
+<div class="panel panel_color_transparent panel_color_fill">
+<div class="panel-body"> <img src="/images/nextgen/callouts/bg-trial-arrow_02.png" class="add_margin_5">
+<h4>Try MATLAB, Simulink, and Other Products</h4>
+<a href="/programs/trials/trial_request.html?prodcode=ML&amp;s_iid=doc_trial_ML_footer" class="icon-chevron">Get trial now </a>
+</div>
+</div>
+</div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- BODY TRAIL - End -->
+
+    <footer id="footer" class="bs-footer">
+        <!-- FAT FOOTER - Begin --> 
+        <div class="container-fluid">
+          <div class="fat_footer_container">
+            <div class="execmatlabproduct">
+<p class="copyright">&copy; 1994-2016 The MathWorks, Inc.</p>
+<ul class="footernav">
+<li class="footernav_acknowledgments"><a href="MATLAB:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li>
+<li class="footernav_trademarks"><a href="MATLAB:web([matlabroot '/trademarks.txt'])">Trademarks</a></li>
+<li class="footernav_patents"><a href="MATLAB:web([matlabroot '/patents.txt'])">Patents</a></li>
+<li class="footernav_terms"><a href="MATLAB:web(matlab.internal.licenseAgreement)">Terms of Use</a></li>
+</ul>
+</div>
+          </div>
+        </div>
+        <!-- FAT FOOTER - End -->
+      <div class="container-fluid">
+       <div class="footer">
+<div class="row">
+<div class="col-xs-12 col-lg-9">
+<ul class="countrynav" id="countrynav">
+<li class="footernav_country">
+<a href="javascript:void(0);" data-toggle="modal" data-target="#country-unselected">
+<span class="icon-globe icon_color_quinary icon_16"></span>Deutschland
+</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+<ul class="footernav">
+<li class="footernav_patents"><a href="http://de.mathworks.com/company/aboutus/policies_statements/patents.html?s_tid=gf_pat">Patente</a></li>
+<li class="footernav_trademarks"><a href="http://de.mathworks.com/company/aboutus/policies_statements/trademarks.html?s_tid=gf_trd">Handelsmarken</a></li>
+<li class="footernav_privacy"><a href="http://de.mathworks.com/company/aboutus/policies_statements/?s_tid=gf_priv">Datenschutz</a></li>
+<li class="footernav_piracy"><a href="http://de.mathworks.com/company/aboutus/policies_statements/piracy.html?s_tid=gf_pir">Preventing Piracy</a></li>
+</ul>
+<div class="clearfix"></div>
+<div class="clearfix"></div>
+<p class="copyright" translate="no">&copy; 1994-2016 The MathWorks, Inc.</p>
+</div>
+<div class="clearfix visible-sm add_margin_10"></div>
+<div class="col-xs-12 col-lg-3">
+<div class="social_media">
+<ul class="social_media_icons">
+<li>
+<a href="http://www.facebook.com/MATLAB" target="_blank" class="svg_link">
+<img src="/images/responsive/global/ico-facebook.svg" alt="Facebook" class="ico_facebook">
+</a>
+</li>
+<li>
+<a href="http://www.twitter.com/MATLAB" target="_blank" class="svg_link">
+<img src="/images/responsive/global/ico-twitter.svg" alt="Twitter" class="ico_twitter">
+</a>
+</li>
+<li>
+<a href="https://plus.google.com/117177960465154322866?prsrc=3" target="_blank" class="svg_link">
+<img src="/images/responsive/global/ico-google-plus.svg" alt="Google+" class="ico_google">
+</a>
+</li>
+<li>
+<a href="http://www.linkedin.com/company/the-mathworks_2" target="_blank" class="svg_link">
+<img src="/images/responsive/global/ico-linkedin.svg" alt="LinkedIn" class="ico_linkedin">
+</a>
+</li>
+<li>
+<a href="http://de.mathworks.com/company/rss/index.html" class="svg_link">
+<img src="/images/responsive/global/ico-rss.svg" alt="RSS" class="ico_rss">
+</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+<p><em>Folgen Sie uns</em></p>
+</div>
+</div>
+</div>
+</div>
+<!-- BEGIN Adobe DTM -->
+<script type="text/javascript">
+try {
+_satellite.pageBottom();
+} catch (e) {
+//something went wrong
+}
+</script>
+<!-- END Adobe DTM -->
+      </div>
+    </footer>
+
+  </div>
+
+
+</body>
+</html>
