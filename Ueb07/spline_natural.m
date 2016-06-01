@@ -15,13 +15,14 @@ d1 = h(2:n-2);                 % super and sub diagonal
 
 A = diag(d0,0) + diag(d1,-1) + diag(d1,1);
 b = 3*(f(3:n)-f(2:n-1))./h(2:n-1) - 3*(f(2:n-1)-f(1:n-2))./h(1:n-2);
+b = b';
 
 %LGS
 z = A\b;
 
 %natural condition
 z = [0;z;0];
-%z=z';
+z=z';
 
 % compute the coefficients
 M(:,1) =  f(1:n-1);
