@@ -28,4 +28,3 @@ f5 = exp(-(X.^2/2));
 
 plot(X,f5,'m', X,S_nat,'g', X,S_nak,'r', X,S_spline, 'k');
 legend('Exakt','Natural','Not-a-Knot')
-
