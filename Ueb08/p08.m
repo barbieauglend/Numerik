@@ -1,20 +1,23 @@
 function p08 
+graphics_toolkit('gnuplot');
 
 clear;
 
-f = @(x) log(x);
-a = 1;
+f = @(x) log(x); %Funktion
+a = 1;            % Grenzen
 b = 2;
-x = linspace(0,1,100);
+x = linspace(a,b,8); 
+n = 8; %Anzahl der Abschnitte
 
 hold on;
 
-for n = 1 : 8
-  itr(n) = IterTrapez(f(x),a,b,n);
-  plot(itr)
-  iro = Romberg(f(x),a,b,n)
+for i = 1 : n
+  exa(i) = x(i)*f(x(i)) - x(i);
+  plot(exa, 'r');
+  itr(i) = IterTrapez(f(x),a,b,i);
 end
 
+%iro = Romberg(f(x),a,b,n)
 %for n = 1 : 8
 %  isi(n) = IterSimpson(f(x),a,b,n);
 %  plot(isi)
