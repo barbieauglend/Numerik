@@ -1,24 +1,17 @@
-function v = Romberg(f, a, b, n)
+function v = Romberg(f,a,b,n)
 
-h(1) = b-a;
+h=b-a;
+T(1,1)=h*(feval(f,a)+feval(f,b))/2;
 
-for i = 1 : (n-1)
-h(i+1) = (b-a)/(2^(i));
+for k=1:n
+  h=h/2;
+  T(k+1,1)=h/2*(feval(f,a)+feval(f,b)+2*sum(feval(f,a+(1:(2^k-1))*h))); %naechstes Glied;Trapezregel
 end
 
-r(1,1) = (b-a)*(f(a)+f(b))/2;
-
-if n > 1
-for j = 2:n
-  subtotal = 0;
-  for i = 1:2.^(j-2)
-        subtotal = subtotal + f(a+(2*i-1) * h(j));
-    end
-    r(j,1) = r(j-1,1)/2 + h(j) * subtotal;
-    for k = 2:j
-        r(j,k) = (4^(k-1) * r(j,k-1) - r(j-1,k-1)) / (4^(k-1) - 1);
-    end
-end
+for k=2:n+1
+  l=1;
+  T(l,k)=T(l+1,k-1)+(T(l+1,k-1)-T(l,k-1))/(2.^(2*(k-1))-1);
 end
 
-v = r;
+v = T;
+end
