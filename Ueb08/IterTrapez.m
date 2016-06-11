@@ -1,13 +1,11 @@
 function v = IterTrapez(f, a, b, n)
 
-h = (b-a)/n; %Breite
-x = a:h:b; %Koordinaten Stützpunkte
+v = (f(a)+f(b))/2;
+dx = (b-a)/n;
 
-S = 0;
-S = (f(x(1))+f(x(n)))/2;
-for i=2:n
-   S = (S + f(x(i)))/2;
+for k=1:(n-1)
+c = a+k*dx;
+v = v + f(c);
 end
 
-S = S*h;
-v = S;
+v = dx*v;

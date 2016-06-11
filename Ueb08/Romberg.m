@@ -1,24 +1,18 @@
-function v = Romberg(f, a, b, n)
+function v = Romberg(f,a,b,n)
 
-h(1) = b-a;
+h=b-a;
 
-for i = 1 : (n-1)
-h(i+1) = (b-a)/(2^(i));
-end
+R(1,1)=h*(f(a)+f(b))/2;
 
-r(1,1) = (b-a)*(f(a)+f(b))/2;
+for i=2:n;
+  p=2^(i-2);
+  x=a-.5*h+h*(1:p);
+  R(2,1)=(R(1,1)+h*sum(f(x)))/2;
+  for  j=2:i;
+    R(2,j)=R(2,j-1)+(R(2,j-1)-R(1,j-1))/(4^(j-1)-1);
+   end;
+  h=h/2;
+  R(1,1:i)=R(2,1:i);
+end;
 
-if n > 1
-for j = 2:n
-  subtotal = 0;
-  for i = 1:2.^(j-2)
-        subtotal = subtotal + f(a+(2*i-1) * h(j));
-    end
-    r(j,1) = r(j-1,1)/2 + h(j) * subtotal;
-    for k = 2:j
-        r(j,k) = (4^(k-1) * r(j,k-1) - r(j-1,k-1)) / (4^(k-1) - 1);
-    end
-end
-end
-
-v = r;
+v=R(1,n);
