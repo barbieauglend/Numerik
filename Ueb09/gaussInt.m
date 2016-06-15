@@ -1,11 +1,7 @@
-function v = gaussInt(f,X,A)
-% f		function handle
-% a,b	Intervallgrenzen [a,b]
-% t,w	Stützstellen und Integrationsgewichte
-% s		numerisches Integral
-h=1;
-v=0;
+function v = gaussInt(f,a,b,n,N)
 
-for i=1:length(w)
-	v = v+A(i)*f(X(i)*h);
-end
+[A,X] = gauss(n);
+ag = -1;
+bg = 1;
+[At,Xt] = transformQF(A,X,ag,bg,a,b);
+v = quadApply(f,At,Xt);
